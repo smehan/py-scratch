@@ -30,7 +30,7 @@ def is_palindrome(l1, l2):
 
 def largest_product():
     max_product = 0
-    for i, j in itertools.product(range(1, 1000), range(1, 1000)):
+    for i, j in itertools.product(range(1, 100000), range(1, 100000)):
         product = i * j
         if max_product > product:  # smaller than what we already found so skip
             continue
