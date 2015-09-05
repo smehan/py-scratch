@@ -1,3 +1,4 @@
 __author__ = 'shawnmehan'
 
-from E7 import *
+"""Find sum of P_n < L"""
+

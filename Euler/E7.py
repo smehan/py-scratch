@@ -3,6 +3,11 @@ __author__ = 'shawnmehan'
 
 
 def get_primes(n):
+    """
+    Returns prime factors for an integer N
+    :param n: integer to factor
+    :return: list<integers> prime factors
+    """
     primefac = []
     d = 2
     while d*d <= n:
@@ -16,6 +21,11 @@ def get_primes(n):
 
 
 def get_nth_prime(nth):
+    """
+    Returns Nth prime in series of primes
+    :param nth: Which prime to return
+    :return: Nth prime
+    """
     primes = []
     i = 2
     while len(primes) < nth:
