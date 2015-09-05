@@ -21,8 +21,6 @@ def get_sum_squares2(n):
     sum = n*(n+1)*(2*n+1)/6
     return sum
 
-
-
 n = 100000000
 print "Difference for N=", n, " is :", get_square_sum(n) - get_sum_squares(n)
 
