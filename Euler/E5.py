@@ -32,7 +32,7 @@ def get_smallest2(step):
 
 def get_smallest(start, stop, ceiling):
     for s in range(1, ceiling):
-        if test_divs2(s, start, stop):
+        if test_divs(s, start, stop):
             return s
         elif s % 100000 == 0:
             print "...{:d}...".format(s)
