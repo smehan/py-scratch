@@ -1,3 +1,3 @@
 __author__ = 'shawnmehan'
 
-from E7 import *
+from E7 import
