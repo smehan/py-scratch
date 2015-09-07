@@ -35,5 +35,5 @@ def get_nth_prime(nth):
         i += 1
     return primes
 
-#  print "Nth prime is: ", get_nth_prime(10001)[-1]
+print "Nth prime is: ", get_nth_prime(1000000)[-1]
 

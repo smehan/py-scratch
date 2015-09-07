@@ -2,7 +2,7 @@ __author__ = 'shawnmehan'
 
 """Find sum of P_n < L"""
 
-from E7 import get_nth_prime
+from GetPrimes import *
 
 
 def get_sum_primes(ceiling):
@@ -15,12 +15,14 @@ def get_sum_primes(ceiling):
     count = 1
     flag = True
     while flag:
-        nextPrime = get_nth_prime(count)
+        nextPrime = rwh_primes(count)
         if nextPrime[-1] < ceiling:
             total += nextPrime[-1]
             count += 1
         else:
             flag = False
+        if count % 10000 == 0:
+            print "...{:d}...".format(count)
     return total
 
-print "Sum of primes is: ", get_sum_primes(10)
+print "Sum of primes is: ", get_sum_primes(2000000)

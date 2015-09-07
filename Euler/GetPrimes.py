@@ -326,7 +326,7 @@ def primesfrom3to(n):
     return np.r_[2, 2*np.nonzero(sieve)[0][1::]+1]
 
 def primesfrom2to(n):
-    """ Input n>=6, Returns a array of primes, 2 <= p < n """
+    """ Input n>=6, Returns an array of primes, 2 <= p < n """
     sieve = np.ones(n/3 + (n%6==2), dtype=np.bool)
     sieve[0] = False
     for i in xrange(int(n**0.5)/3+1):
