@@ -11,18 +11,11 @@ def get_sum_primes(ceiling):
     :param ceiling: ceiling limit under which all P_i must remain
     :return: Sum of all valid primes
     """
+    allPrimes = rwh_primes(ceiling)
     total = 0
-    count = 1
-    flag = True
-    while flag:
-        nextPrime = rwh_primes(count)
-        if nextPrime[-1] < ceiling:
-            total += nextPrime[-1]
-            count += 1
-        else:
-            flag = False
-        if count % 10000 == 0:
-            print "...{:d}...".format(count)
-    return total
+    for n in allPrimes:
+        total += n
+    return total, len(allPrimes)
 
-print "Sum of primes is: ", get_sum_primes(2000000)
+total, count = get_sum_primes(2000000)
+print "Sum of first ",count, " primes is: ", total
