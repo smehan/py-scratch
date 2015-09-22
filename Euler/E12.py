@@ -34,16 +34,16 @@ def get_divisors2(n):
 
 
 tri_sum = 0
-tri_sum_divs = 0
-for i in range(6000):
-    tri_sum += i+1
+tri_sum_divs = []
+n = 1
+while len(tri_sum_divs) <= 500:
+    tri_sum += n
     tri_sum_divs = get_divisors2(tri_sum)
     if len(tri_sum_divs) > 300:
-        print "Close: %dth triangle number, %d, has length: %d" % (i, tri_sum, len(tri_sum_divs))
-    if len(tri_sum_divs) > 500:
-        print i
-        break
+        print "Close: %dth triangle number, sum %d, has %d divisors" % (n, tri_sum, len(tri_sum_divs))
+    n += 1
+print "Exited at %dth triangle number, sum %d, with %d divisors" % (n-1, tri_sum, len(tri_sum_divs))
+print tri_sum_divs
 
-print tri_sum, len(tri_sum_divs), tri_sum_divs
 
 
