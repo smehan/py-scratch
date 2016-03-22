@@ -4,46 +4,54 @@ __author__ = 'shawnmehan'
 Objective is to find first triangle number with > 500 divisors"""
 
 
-def get_divisors(n):
-    divisors = []
-    if n % 2 != 0:
-        divisors.append(2)
-        divisors.append(n % 2)
-    if n % 3 != 0:
-        divisors.append(3)
-        divisors.append(n % 3)
-    for d in range(4, n/4):
-        if n % d == 0:
-            divisors.append(d)
-    divisors.append(n)
-    return sorted(divisors)
+import math, time
+ti = time.time()
 
 
-def get_divisors2(n):
-    divisors = []
-    for d in range(1, n):
-        """If d is in the list, we have crossed the half-way point and can stop"""
-        if d in divisors:
-            break
-        """Otherwise, test to see if a divisor, and then add both to set"""
-        if n % d == 0:
-            r = n / d
-            divisors.append(d)
-            divisors.append(r)
-    return sorted(divisors)
+def nofactors2(num):
+    count = 0
+    x = math.sqrt(num)
+    y = int(math.ceil(x))
+    if x - y == 0:
+        count = 1
+    count += 2*len(filter(lambda a:num % a == 0, range(1, y)))
+    return count
 
 
-tri_sum = 0
-tri_sum_divs = []
-n = 1
-while len(tri_sum_divs) <= 500:
-    tri_sum += n
-    tri_sum_divs = get_divisors2(tri_sum)
-    if len(tri_sum_divs) > 300:
-        print "Close: %dth triangle number, sum %d, has %d divisors" % (n, tri_sum, len(tri_sum_divs))
-    n += 1
-print "Exited at %dth triangle number, sum %d, with %d divisors" % (n-1, tri_sum, len(tri_sum_divs))
-print tri_sum_divs
+n = [0 for a in range(3)]
+n[2] = nofactors2(22/2)
+m = 1
+for a in range(22, (10**5)-1, 2):
+    n = [n[2], nofactors2(a+1), nofactors2((a+2)/2)]
+    m = max(m, n[0]*n[1]-1, n[1]*n[2]-1)
+    if m > 500:
+        break
+print m, a
+print "Time taken(secs):", time.time() - ti
+
+
+from math import sqrt
+ti = time.time()
+def triangle():
+    a, b = 2, 1
+    while 1:
+        yield b
+        b += a
+        a += 1
+
+for n in triangle():
+    c = 0
+    for i in xrange(1, int(sqrt(n)) + 1):
+        if n % i == 0:
+            c += 1
+            if i * i != n:
+                c += 1
+    if c > 500:
+        print "Answer: ", n
+        break
+
+print "Time taken(secs):", time.time() - ti
+
 
 
 

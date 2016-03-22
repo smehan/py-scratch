@@ -115,6 +115,72 @@ xml = """ <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </items>
         </xml>"""
 
+xml2 = """<root>
+<family>
+ <Mother>
+      <child age="1">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="2">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="3">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="4">
+        <dog-name>dog1</dog-name>
+      </child>
+   </Mother>
+</family>
+<family2>
+   <Mother>
+      <child age="1">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="2">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="3">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="4">
+        <dog-name>dog1</dog-name>
+      </child>
+   </Mother>
+</family2>
+<family3>
+   <Mother>
+      <child age="1">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="2">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="3">
+       <dog-name>dog1</dog-name>
+      </child>
+      <child age="4">
+        <dog-name>dog1</dog-name>
+      </child>
+   </Mother>
+</family3>
+</root>"""
+
+import xml.etree.cElementTree as et
+
+tree = et.fromstring(xml2)
+for e in tree.iter():
+    if e.tag == "child":
+      print e.tag," : ", e.attrib
+
+print "Next\n"
+families = tree.findall("family")
+for f in families:
+    maxAge = 0
+    if f is None:
+        print "no target.\n"
+    else:
+        print "Target has tag %s and attrib %s" % (f.tag, f.attrib)
 
 
 
