@@ -1,6 +1,6 @@
 __author__ = 'shawnmehan'
 
-"""Class to calculte the triangle numbers and then determine how many divisors they have.
+"""Class to calculate the triangle numbers and then determine how many divisors they have.
 Objective is to find first triangle number with > 500 divisors"""
 
 
@@ -26,8 +26,8 @@ for a in range(22, (10**5)-1, 2):
     m = max(m, n[0]*n[1]-1, n[1]*n[2]-1)
     if m > 500:
         break
-print m, a
-print "Time taken(secs):", time.time() - ti
+print(m, a)
+print("Time taken(secs):", time.time() - ti)
 
 
 from math import sqrt
@@ -41,16 +41,16 @@ def triangle():
 
 for n in triangle():
     c = 0
-    for i in xrange(1, int(sqrt(n)) + 1):
+    for i in range(1, int(sqrt(n)) + 1):
         if n % i == 0:
             c += 1
             if i * i != n:
                 c += 1
     if c > 500:
-        print "Answer: ", n
+        print("Answer: ", n)
         break
 
-print "Time taken(secs):", time.time() - ti
+print("Time taken(secs):", time.time() - ti)
 
 
 

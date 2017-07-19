@@ -8,19 +8,19 @@ def rwh_primes(n):
    
     """ Returns  a list of primes < n """
     sieve = [True] * n
-    for i in xrange(3,int(n**0.5)+1,2):
+    for i in range(3,int(n**0.5)+1,2):
         if sieve[i]:
             sieve[i*i::2*i]=[False]*((n-i*i-1)/(2*i)+1)
-    return [2] + [i for i in xrange(3,n,2) if sieve[i]]
+    return [2] + [i for i in range(3,n,2) if sieve[i]]
 
 def rwh_primes1(n):
    
     """ Returns  a list of primes < n """
     sieve = [True] * (n/2)
-    for i in xrange(3,int(n**0.5)+1,2):
+    for i in range(3,int(n**0.5)+1,2):
         if sieve[i/2]:
             sieve[i*i/2::i] = [False] * ((n-i*i-1)/(2*i)+1)
-    return [2] + [2*i+1 for i in xrange(1,n/2) if sieve[i]]
+    return [2] + [2*i+1 for i in range(1,n/2) if sieve[i]]
 
 def rwh_primes2(n):
    
@@ -29,12 +29,12 @@ def rwh_primes2(n):
     n = {0:n,1:n-1,2:n+4,3:n+3,4:n+2,5:n+1}[n%6]
     sieve = [True] * (n/3)
     sieve[0] = False
-    for i in xrange(int(n**0.5)/3+1):
+    for i in range(int(n**0.5)/3+1):
       if sieve[i]:
         k=3*i+1|1
         sieve[      ((k*k)/3)      ::2*k]=[False]*((n/6-(k*k)/6-1)/k+1)
         sieve[(k*k+4*k-2*k*(i&1))/3::2*k]=[False]*((n/6-(k*k+4*k-2*k*(i&1))/6-1)/k+1)
-    return [2,3] + [3*i+1|1 for i in xrange(1,n/3-correction) if sieve[i]]
+    return [2,3] + [3*i+1|1 for i in range(1,n/3-correction) if sieve[i]]
 
 def sieve_wheel_30(N):
     # http://zerovolt.com/?p=88
@@ -93,7 +93,7 @@ If you need this code for commercial purposes, please contact me by sending an e
     pos, prime, lastadded, stop = 0, 0, 0, int(ceil(sqrt(N)))
     # inner functions definition
     def del_mult(tk, start, step):
-        for k in xrange(start, len(tk), step):
+        for k in range(start, len(tk), step):
             tk[k] = False
     # end of inner functions definition
     cpos = const * pos
@@ -224,14 +224,14 @@ def sieveOfAtkin(end):
     sieve = [False] * (lng + 1)
 
     x_max, x2, xd = int(sqrt((end-1)/4.0)), 0, 4
-    for xd in xrange(4, 8*x_max + 2, 8):
+    for xd in range(4, 8*x_max + 2, 8):
         x2 += xd
         y_max = int(sqrt(end-x2))
         n, n_diff = x2 + y_max*y_max, (y_max << 1) - 1
         if not (n & 1):
             n -= n_diff
             n_diff -= 2
-        for d in xrange((n_diff - 1) << 1, -1, -8):
+        for d in range((n_diff - 1) << 1, -1, -8):
             m = n % 12
             if m == 1 or m == 5:
                 m = n >> 1
@@ -239,26 +239,26 @@ def sieveOfAtkin(end):
             n -= d
 
     x_max, x2, xd = int(sqrt((end-1) / 3.0)), 0, 3
-    for xd in xrange(3, 6 * x_max + 2, 6):
+    for xd in range(3, 6 * x_max + 2, 6):
         x2 += xd
         y_max = int(sqrt(end-x2))
         n, n_diff = x2 + y_max*y_max, (y_max << 1) - 1
         if not(n & 1):
             n -= n_diff
             n_diff -= 2
-        for d in xrange((n_diff - 1) << 1, -1, -8):
+        for d in range((n_diff - 1) << 1, -1, -8):
             if n % 12 == 7:
                 m = n >> 1
                 sieve[m] = not sieve[m]
             n -= d
 
     x_max, y_min, x2, xd = int((2 + sqrt(4-8*(1-end)))/4), -1, 0, 3
-    for x in xrange(1, x_max + 1):
+    for x in range(1, x_max + 1):
         x2 += xd
         xd += 6
         if x2 >= end: y_min = (((int(ceil(sqrt(x2 - end))) - 1) << 1) - 2) << 1
         n, n_diff = ((x*x + x) << 1) - 1, (((x-1) << 1) - 2) << 1
-        for d in xrange(n_diff, y_min, -8):
+        for d in range(n_diff, y_min, -8):
             if n % 12 == 11:
                 m = n >> 1
                 sieve[m] = not sieve[m]
@@ -268,26 +268,26 @@ def sieveOfAtkin(end):
     if end <= 3:
         return primes[:max(0,end-2)]
 
-    for n in xrange(5 >> 1, (int(sqrt(end))+1) >> 1):
+    for n in range(5 >> 1, (int(sqrt(end))+1) >> 1):
         if sieve[n]:
             primes.append((n << 1) + 1)
             aux = (n << 1) + 1
             aux *= aux
-            for k in xrange(aux, end, 2 * aux):
+            for k in range(aux, end, 2 * aux):
                 sieve[k >> 1] = False
 
     s  = int(sqrt(end)) + 1
     if s  % 2 == 0:
         s += 1
-    primes.extend([i for i in xrange(s, end, 2) if sieve[i >> 1]])
+    primes.extend([i for i in range(s, end, 2) if sieve[i >> 1]])
 
     return primes
 
 def ambi_sieve_plain(n):
     s = range(3, n, 2)
-    for m in xrange(3, int(n**0.5)+1, 2):
+    for m in range(3, int(n**0.5)+1, 2):
         if s[(m-3)/2]:
-            for t in xrange((m*m-3)/2,(n>>1)-1,m):
+            for t in range((m*m-3)/2,(n>>1)-1,m):
                 s[t]=0
     return [2]+[t for t in s if t>0]
 
@@ -297,8 +297,8 @@ def sundaram3(max_n):
     half = (max_n)//2
     initial = 4
 
-    for step in xrange(3, max_n+1, 2):
-        for i in xrange(initial, half, step):
+    for step in range(3, max_n+1, 2):
+        for i in range(initial, half, step):
             numbers[i-1] = 0
         initial += 2*(step+1)
 
@@ -310,7 +310,7 @@ def sundaram3(max_n):
 def ambi_sieve(n):
     # http://tommih.blogspot.com/2009/04/fast-prime-number-generator.html
     s = np.arange(3, n, 2)
-    for m in xrange(3, int(n ** 0.5)+1, 2):
+    for m in range(3, int(n ** 0.5)+1, 2):
         if s[(m-3)/2]:
             s[(m*m-3)/2::m]=0
     return np.r_[2, s[s>0]]
@@ -320,7 +320,7 @@ def primesfrom3to(n):
     """ Returns a array of primes, p < n """
     assert n>=2
     sieve = np.ones(n/2, dtype=np.bool)
-    for i in xrange(3,int(n**0.5)+1,2):
+    for i in range(3,int(n**0.5)+1,2):
         if sieve[i/2]:
             sieve[i*i/2::i] = False
     return np.r_[2, 2*np.nonzero(sieve)[0][1::]+1]
@@ -329,7 +329,7 @@ def primesfrom2to(n):
     """ Input n>=6, Returns an array of primes, 2 <= p < n """
     sieve = np.ones(n/3 + (n%6==2), dtype=np.bool)
     sieve[0] = False
-    for i in xrange(int(n**0.5)/3+1):
+    for i in range(int(n**0.5)/3+1):
         if sieve[i]:
             k=3*i+1|1
             sieve[      ((k*k)/3)      ::2*k] = False
